@@ -8,9 +8,13 @@ import android.widget.BaseAdapter
 import androidx.core.content.ContextCompat
 import com.financakotlin.R
 import com.financakotlin.extension.formataParaBrasileiro
+import com.financakotlin.extension.formatadaBrasileiro
 import com.financakotlin.model.Tipo
 import com.financakotlin.model.Transacao
 import kotlinx.android.synthetic.main.transacao_item.view.*
+import java.math.BigDecimal
+import java.text.DecimalFormat
+import java.util.*
 
 class ListaTransacoesAdapter(
     transacoes: List<Transacao>,
@@ -39,12 +43,14 @@ class ListaTransacoesAdapter(
             viewCriada.transacao_icone.setBackgroundResource(R.drawable.icone_transacao_item_despesa)
         }
 
-        viewCriada.transacao_valor.text = transacao.valor.toString()
+        viewCriada.transacao_valor.text = transacao.valor.formatadaBrasileiro()
         viewCriada.transacao_categoria.text = transacao.categoria
         viewCriada.transacao_data.text = transacao.data.formataParaBrasileiro()
 
         return viewCriada
     }
+
+
 
     override fun getItem(position: Int): Transacao {
         return transacoes[position]
