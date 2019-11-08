@@ -8,7 +8,6 @@ import com.financakotlin.model.Transacao
 import com.financakotlin.ui.adapter.ListaTransacoesAdapter
 import kotlinx.android.synthetic.main.activity_lista_transacoes.*
 import java.math.BigDecimal
-import java.util.*
 
 class ListaTransacoesActivity : AppCompatActivity() {
 
@@ -17,10 +16,29 @@ class ListaTransacoesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_lista_transacoes)
 
         val transacoes = listOf(
-            Transacao(valor = BigDecimal(20.5), categoria = "comida", tipo = Tipo.DESPESA),
-            Transacao(valor = BigDecimal(100.0), tipo = Tipo.RECEITA, categoria = "Ecomonia")
+            Transacao(
+                valor = BigDecimal(20.5),
+                categoria = "comida",
+                tipo = Tipo.DESPESA
+            ),
+            Transacao(
+                valor = BigDecimal(100.0),
+                tipo = Tipo.RECEITA,
+                categoria = "Ecomonia"
+            ),
+            Transacao(
+                valor = BigDecimal(20.5),
+                categoria = "comida",
+                tipo = Tipo.DESPESA
+            ),
+            Transacao(
+                valor = BigDecimal(100.0),
+                tipo = Tipo.RECEITA,
+                categoria = "Ecomonia"
+            )
+
         )
 
-        lista_transacoes_listview.setAdapter(ListaTransacoesAdapter(transacoes, this))
+        lista_transacoes_listview.adapter = ListaTransacoesAdapter(transacoes, this)
     }
 }

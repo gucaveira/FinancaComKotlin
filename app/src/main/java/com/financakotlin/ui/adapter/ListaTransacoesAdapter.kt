@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import androidx.core.content.ContextCompat
 import com.financakotlin.R
 import com.financakotlin.extension.formataParaBrasileiro
+import com.financakotlin.model.Tipo
 import com.financakotlin.model.Transacao
 import kotlinx.android.synthetic.main.transacao_item.view.*
 
@@ -23,6 +25,19 @@ class ListaTransacoesAdapter(
             .inflate(R.layout.transacao_item, parent, false)
 
         val transacao = transacoes[position]
+
+        if (transacao.tipo == Tipo.RECEITA) {
+            viewCriada.transacao_valor
+                .setTextColor(ContextCompat.getColor(contexto, R.color.receita))
+        } else {
+            viewCriada.transacao_valor
+                .setTextColor(ContextCompat.getColor(contexto, R.color.despesa))
+        }
+        if (transacao.tipo == Tipo.RECEITA) {
+            viewCriada.transacao_icone.setBackgroundResource(R.drawable.icone_transacao_item_receita)
+        } else {
+            viewCriada.transacao_icone.setBackgroundResource(R.drawable.icone_transacao_item_despesa)
+        }
 
         viewCriada.transacao_valor.text = transacao.valor.toString()
         viewCriada.transacao_categoria.text = transacao.categoria
